@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTM Command Centre — Chennai 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:#f9fafb;color:#111827;font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;font-size:14px;line-height:1.6;min-height:100vh;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px 60px;}
+
+/* Header */
+.site-hdr{padding:32px 0 24px;}
+.site-hdr h1{font-size:24px;font-weight:700;color:#111827;}
+.site-hdr p{font-size:13px;color:#6b7280;margin-top:4px;}
+
+/* Super tabs */
+.super-bar{display:flex;gap:8px;margin-top:24px;}
+.super-tab{padding:11px 24px;border-radius:8px;border:1.5px solid #e5e7eb;background:#fff;color:#6b7280;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;}
+.super-tab:hover{border-color:#d1d5db;color:#374151;}
+.super-tab[data-biz="events"].active{background:#fffbeb;border-color:#d97706;color:#b45309;}
+.super-tab[data-biz="interior"].active{background:#f0fdfa;border-color:#0d9488;color:#0f766e;}
+
+/* Super panels */
+.super-panel{display:none;}.super-panel.active{display:block;}
+
+/* Sub tabs */
+.sub-bar{display:flex;overflow-x:auto;border-bottom:1px solid #e5e7eb;margin-top:20px;scrollbar-width:none;}
+.sub-bar::-webkit-scrollbar{display:none;}
+.sub-tab{padding:10px 15px;border:none;background:none;color:#6b7280;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;}
+.sub-tab:hover{color:#374151;}
+#panel-events .sub-tab.active{color:#b45309;border-bottom-color:#b45309;font-weight:600;}
+#panel-interior .sub-tab.active{color:#0f766e;border-bottom-color:#0d9488;font-weight:600;}
+
+/* Sub panels */
+.sub-panel{display:none;padding-top:26px;}.sub-panel.active{display:block;}
+
+/* Section */
+.sec-title{font-size:17px;font-weight:700;color:#111827;margin-bottom:4px;}
+.sec-sub{font-size:12px;color:#6b7280;margin-bottom:18px;}
+
+/* KPIs */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:24px;}
+.kpi-card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:16px;}
+.kpi-label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;margin-bottom:6px;}
+.kpi-val{font-size:21px;font-weight:700;line-height:1.2;}
+.kpi-val.ev{color:#b45309;}.kpi-val.int{color:#0f766e;}
+.kpi-note{font-size:11px;color:#6b7280;margin-top:3px;}
+
+/* Tables */
+.tbl-wrap{border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:20px;overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:460px;}
+thead th{background:#f9fafb;padding:10px 14px;text-align:left;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6b7280;border-bottom:1px solid #e5e7eb;}
+tbody td{padding:11px 14px;border-bottom:1px solid #f3f4f6;color:#111827;vertical-align:middle;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#fafafa;}
+.ev-t{color:#b45309;font-weight:600;}.int-t{color:#0f766e;font-weight:600;}
+.g-t{color:#16a34a;font-weight:600;}.m-t{color:#6b7280;}
+.hl-ev{background:#fffbeb;color:#b45309;font-weight:700;}
+.hl-int{background:#f0fdfa;color:#0f766e;font-weight:700;}
+.row-hi td{background:#f0fdf4;}
+.row-tot td{background:#f9fafb;font-weight:700;border-top:1px solid #e5e7eb!important;}
+
+/* Insights */
+.ins-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:11px;margin-bottom:20px;}
+.ins-card{background:#fff;border:1px solid #e5e7eb;border-left:3px solid #d97706;border-radius:0 8px 8px 0;padding:13px 15px;}
+.ins-card.int{border-left-color:#0d9488;}
+.ins-num{font-size:22px;font-weight:800;color:#e5e7eb;line-height:1;margin-bottom:4px;}
+.ins-text{font-size:13px;color:#374151;line-height:1.5;}
+.ins-text strong{color:#111827;}
+
+/* Phase cards */
+.phase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px;}
+.phase-card{background:#fff;border:1px solid #e5e7eb;border-top:3px solid #d97706;border-radius:8px;padding:17px 15px;}
+.phase-card.int{border-top-color:#0d9488;}
+.ph-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9ca3af;margin-bottom:4px;}
+.ph-name{font-size:14px;font-weight:700;color:#111827;margin-bottom:3px;}
+.ph-period{font-size:11px;color:#6b7280;margin-bottom:11px;}
+.ph-row{display:flex;justify-content:space-between;font-size:12.5px;padding:4px 0;border-bottom:1px solid #f3f4f6;}
+.ph-row:last-child{border-bottom:none;}
+.ph-val{font-weight:600;}
+.ph-val.ev{color:#b45309;}.ph-val.int{color:#0f766e;}.ph-val.g{color:#16a34a;}
+.ph-roi{margin-top:8px;padding-top:8px;border-top:1px solid #e5e7eb;font-size:11.5px;color:#b45309;font-weight:700;}
+.phase-card.int .ph-roi{color:#0f766e;}
+
+/* Summary */
+.sum-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-bottom:22px;}
+.sum-item{padding:18px 20px;background:#fff;border-right:1px solid #e5e7eb;}
+.sum-item:last-child{border-right:none;}
+.sum-label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;margin-bottom:5px;}
+.sum-val{font-size:19px;font-weight:700;}
+.sum-val.ev{color:#b45309;}.sum-val.int{color:#0f766e;}
+.sum-note{font-size:11px;color:#6b7280;margin-top:2px;}
+
+/* Bar chart */
+.bar-chart{margin-bottom:22px;}
+.bar-row{display:grid;grid-template-columns:68px 1fr 110px;align-items:center;gap:10px;margin-bottom:7px;}
+.bar-lbl{font-size:11px;color:#6b7280;text-align:right;}
+.bar-bg{background:#f3f4f6;border-radius:3px;height:8px;}
+.bar-fill{height:8px;border-radius:3px;}
+.bar-fill.ev{background:#d97706;}.bar-fill.int{background:#0d9488;}
+.bar-val{font-size:11.5px;color:#374151;font-weight:500;}
+
+/* Demand */
+.dem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:22px;}
+.dem-card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:13px 15px;}
+.dem-period{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#b45309;margin-bottom:3px;}
+.dem-period.int{color:#0f766e;}
+.dem-name{font-size:13px;font-weight:600;color:#111827;margin-bottom:3px;}
+.dem-rev{font-size:13px;color:#16a34a;font-weight:600;}
+.dem-note{font-size:11px;color:#6b7280;margin-top:2px;}
+
+/* Callout */
+.callout{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:13px 17px;margin-bottom:18px;font-size:13px;color:#374151;line-height:1.6;}
+.callout.int{background:#f0fdfa;border-color:#99f6e4;}
+.callout strong{color:#111827;}
+.callout.center{text-align:center;font-weight:600;color:#b45309;}
+.callout.center.int{color:#0f766e;}
+
+/* Tools */
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:10px;margin-bottom:20px;}
+.tool-card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:13px 15px;}
+.tool-name{font-weight:600;font-size:13px;color:#111827;margin-bottom:3px;}
+.tool-cost{font-size:12px;color:#b45309;font-weight:600;}
+.tool-cost.int{color:#0f766e;}
+.tool-use{font-size:11.5px;color:#6b7280;margin-top:3px;line-height:1.5;}
+
+/* Workflows */
+.wf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px;margin-top:14px;}
+.wf-card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:13px 15px;}
+.wf-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#b45309;margin-bottom:5px;}
+.wf-title.int{color:#0f766e;}
+.wf-body{font-size:12px;color:#6b7280;line-height:1.6;}
+
+/* Timeline */
+.timeline{position:relative;padding-left:26px;}
+.timeline::before{content:'';position:absolute;left:7px;top:4px;bottom:4px;width:1px;background:#e5e7eb;}
+.tl-item{position:relative;margin-bottom:14px;}
+.tl-item::before{content:'';position:absolute;left:-22px;top:5px;width:8px;height:8px;border-radius:50%;background:#d1d5db;border:1.5px solid #d1d5db;}
+.tl-item.ms::before{background:#d97706;border-color:#d97706;}
+.tl-item.ms.int::before{background:#0d9488;border-color:#0d9488;}
+.tl-date{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;margin-bottom:1px;}
+.tl-date.ev{color:#b45309;}.tl-date.int{color:#0f766e;}
+.tl-text{font-size:13px;color:#374151;line-height:1.5;}
+.tl-text strong{color:#111827;}
+
+/* Divider */
+hr{border:none;border-top:1px solid #e5e7eb;margin:20px 0;}
+
+/* Responsive */
+@media(max-width:680px){
+  .phase-grid{grid-template-columns:1fr;}
+  .super-tab{font-size:13px;padding:9px 14px;}
+  .sum-bar{grid-template-columns:1fr 1fr;}
+  .sum-item{border-bottom:1px solid #e5e7eb;border-right:none;}
+  .kpi-val{font-size:18px;}
+  .wrap{padding-left:16px;padding-right:16px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-hdr">
+  <h1>GTM Command Centre — Chennai 2026</h1>
+  <p>Two independent businesses. Two separate plans. Zero guesswork.</p>
+</header>
+
+<!-- Super tabs -->
+<div class="super-bar">
+  <button class="super-tab active" data-biz="events" onclick="switchSuper('events', this)">🎭 Events Co. — Ajay</button>
+  <button class="super-tab" data-biz="interior" onclick="switchSuper('interior', this)">🏠 Interior Studio — Shanmathi</button>
+</div>
+
+<!-- EVENTS PANEL -->
+<div id="panel-events" class="super-panel active">
+  <div class="sub-bar">
+    <button class="sub-tab active" onclick="switchSub('events','ev-mkt',this)">📊 Market</button>
+    <button class="sub-tab" onclick="switchSub('events','ev-ph',this)">📅 Phases</button>
+    <button class="sub-tab" onclick="switchSub('events','ev-ue',this)">💰 Unit Economics</button>
+    <button class="sub-tab" onclick="switchSub('events','ev-roi',this)">📈 ROI</button>
+    <button class="sub-tab" onclick="switchSub('events','ev-tools',this)">🤖 Tools</button>
+    <button class="sub-tab" onclick="switchSub('events','ev-ap',this)">✅ Action Plan</button>
+  </div>
+  <div id="ev-mkt" class="sub-panel active">
+<p class="sec-title">Market Validation</p>
+<p class="sec-sub">Why events, why Chennai, why now</p>
+<div class="kpi-grid">
+  <div class="kpi-card"><p class="kpi-label">India Events Market 2025</p><p class="kpi-val ev">$15.39B</p><p class="kpi-note">CAGR 7.6% → $25B by 2032</p></div>
+  <div class="kpi-card"><p class="kpi-label">India Wedding Market</p><p class="kpi-val ev">$103.93B</p><p class="kpi-note">CAGR 14.3% — Avg spend ₹36–37L/wedding</p></div>
+  <div class="kpi-card"><p class="kpi-label">South India Events CAGR</p><p class="kpi-val ev">9.36%</p><p class="kpi-note">Highest regional growth in India</p></div>
+  <div class="kpi-card"><p class="kpi-label">B2B Events CAGR</p><p class="kpi-val ev">11.72%</p><p class="kpi-note">Fastest growing sub-segment</p></div>
+  <div class="kpi-card"><p class="kpi-label">Chennai GCCs</p><p class="kpi-val ev">350+</p><p class="kpi-note">150K+ IT professionals earning ₹1.5–5L/mo</p></div>
+  <div class="kpi-card"><p class="kpi-label">Corporate Events TAM</p><p class="kpi-val ev">₹210 Cr+</p><p class="kpi-note">350 GCCs × 5 events × ₹1.2L avg</p></div>
+</div>
+<hr>
+<p class="sec-title" style="margin-bottom:14px">5 Key Insights</p>
+<div class="ins-grid">
+  <div class="ins-card"><p class="ins-num">01</p><p class="ins-text"><strong>Corporate mandate = zero financial risk.</strong> 50% advance before a single rupee is spent. You never fund events from your own pocket.</p></div>
+  <div class="ins-card"><p class="ins-num">02</p><p class="ins-text"><strong>GCC employees are Chennai's highest spenders.</strong> ₹1.5–5L monthly income, company expense accounts, and social capital from exclusive experiences.</p></div>
+  <div class="ins-card"><p class="ins-num">03</p><p class="ins-text"><strong>Oct–Dec = 60% of annual revenue in 12 weeks.</strong> Navratri, Diwali, NYE back-to-back. Miss this window and you restart from scratch in January.</p></div>
+  <div class="ins-card"><p class="ins-num">04</p><p class="ins-text"><strong>Fan nights deliver 70% margins with zero ad spend.</strong> WhatsApp community drives pre-sales. Sponsor covers F&B. No cold outreach needed.</p></div>
+  <div class="ins-card"><p class="ins-num">05</p><p class="ins-text"><strong>1 happy corporate client = ₹18–45L over 3 years.</strong> 4–6 recurring events per year. LTV:CAC hits 90–300x. Retention is the real business model.</p></div>
+</div>
+<hr>
+<p class="sec-title" style="margin-bottom:14px">Competitor Landscape</p>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Competitor</th><th>Their Weakness</th><th>Your Edge</th></tr></thead>
+  <tbody>
+    <tr><td>Occasions Chennai</td><td>No corporate mandate strategy</td><td class="ev-t">Corporate-first + community moat</td></tr>
+    <tr><td>Eventia India</td><td>₹10L minimum engagement</td><td class="ev-t">Entry at ₹1.5L — accessible to all GCCs</td></tr>
+    <tr><td>Frame The Day</td><td>No community channel</td><td class="ev-t">WhatsApp community = built-in demand</td></tr>
+    <tr><td>Local Freelance Planners</td><td>No brand, no systems</td><td class="ev-t">Branded premium experience</td></tr>
+    <tr><td>WedMeGood (platform)</td><td>Marketplace, no execution</td><td class="ev-t">End-to-end execution partner</td></tr>
+  </tbody>
+</table></div>
+<hr>
+<p class="sec-title" style="margin-bottom:14px">Revenue Demand Calendar 2026–27</p>
+<div class="dem-grid">
+  <div class="dem-card"><p class="dem-period">Jul–Aug 2026</p><p class="dem-name">Pilot Corporate Mandates</p><p class="dem-rev">₹4–8L</p><p class="dem-note">2-week lead time. Start pitching Jun 15.</p></div>
+  <div class="dem-card"><p class="dem-period">Oct 11–19 — Navratri 🪔</p><p class="dem-name">Fan Nights + Themed Dinners</p><p class="dem-rev">₹8–15L</p><p class="dem-note">Book venue by Sep 1</p></div>
+  <div class="dem-card"><p class="dem-period">Nov 8 — Diwali 🎆</p><p class="dem-name">Corporate Mandates + Fan Nights</p><p class="dem-rev">₹10–18L</p><p class="dem-note">Book by Sep 15</p></div>
+  <div class="dem-card"><p class="dem-period">Dec 31 — NYE 🎊</p><p class="dem-name">NYE Premium — 80 pax</p><p class="dem-rev">₹7–10L</p><p class="dem-note">Book venue by Oct 1</p></div>
+  <div class="dem-card"><p class="dem-period">Jan 14 — Pongal 🌾</p><p class="dem-name">Heritage Dinners</p><p class="dem-rev">₹5–10L</p><p class="dem-note">Book by Dec 1</p></div>
+  <div class="dem-card"><p class="dem-period">Apr 14 — Tamil NY</p><p class="dem-name">Heritage Events + Tours</p><p class="dem-rev">₹4–8L</p><p class="dem-note">Book by Mar 1</p></div>
+</div>
+</div>
+  <div id="ev-ph" class="sub-panel">
+<p class="sec-title">Phase-Wise Investment Plan</p>
+<p class="sec-sub">Events Company — Ajay leads execution</p>
+<div class="phase-grid">
+  <div class="phase-card">
+    <p class="ph-label">Phase 1</p><p class="ph-name">Foundation</p><p class="ph-period">Jun 15 – Aug 31, 2026 · 11 weeks</p>
+    <div class="ph-row"><span>Investment</span><span class="ph-val ev">₹4,19,000</span></div>
+    <div class="ph-row"><span>Revenue</span><span class="ph-val g">₹8–12L</span></div>
+    <div class="ph-row"><span>Net Profit</span><span class="ph-val g">₹3.8–7.8L</span></div>
+    <p class="ph-roi">ROI: 1.9–2.9x</p>
+  </div>
+  <div class="phase-card">
+    <p class="ph-label">Phase 2</p><p class="ph-name">Scale</p><p class="ph-period">Sep 1 – Dec 31, 2026 · 17 weeks</p>
+    <div class="ph-row"><span>Investment</span><span class="ph-val ev">₹21,32,000</span></div>
+    <div class="ph-row"><span>Revenue</span><span class="ph-val g">₹48–68L</span></div>
+    <div class="ph-row"><span>Net Profit</span><span class="ph-val g">₹26.7–46.7L</span></div>
+    <p class="ph-roi">ROI: 2.3–3.2x 🔥</p>
+  </div>
+  <div class="phase-card">
+    <p class="ph-label">Phase 3</p><p class="ph-name">Expand</p><p class="ph-period">Jan 1 – Jun 30, 2027 · 26 weeks</p>
+    <div class="ph-row"><span>Investment</span><span class="ph-val ev">₹27,48,000</span></div>
+    <div class="ph-row"><span>Revenue</span><span class="ph-val g">₹55–80L</span></div>
+    <div class="ph-row"><span>Net Profit</span><span class="ph-val g">₹27.5–52.5L</span></div>
+    <p class="ph-roi">ROI: 2.0–2.9x</p>
+  </div>
+</div>
+<div class="sum-bar">
+  <div class="sum-item"><p class="sum-label">Year 1 Total Investment</p><p class="sum-val ev">₹52.99L</p><p class="sum-note">Incl. execution floats (recovered via advances)</p></div>
+  <div class="sum-item"><p class="sum-label">Year 1 Revenue</p><p class="sum-val ev">₹96L – ₹1.62Cr</p><p class="sum-note">Conservative to optimistic</p></div>
+  <div class="sum-item"><p class="sum-label">Year 1 Net Profit</p><p class="sum-val ev">₹58L – ₹1.07Cr</p><p class="sum-note">After all costs, all phases</p></div>
+</div>
+<p class="sec-title" style="margin-bottom:14px">Investment Breakdown</p>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Category</th><th>Phase 1</th><th>Phase 2</th><th>Phase 3</th><th>Total</th></tr></thead>
+  <tbody>
+    <tr><td>Legal + Registration</td><td>₹25,000</td><td>—</td><td>—</td><td>₹25,000</td></tr>
+    <tr><td>Brand Identity</td><td>₹35,000</td><td>₹15,000</td><td>₹25,000</td><td>₹75,000</td></tr>
+    <tr><td>Photography + Content</td><td>₹20,000</td><td>₹30,000</td><td>₹40,000</td><td>₹90,000</td></tr>
+    <tr><td>Digital Tools</td><td>₹15,000</td><td>₹30,000</td><td>₹33,000</td><td>₹78,000</td></tr>
+    <tr><td>Marketing Ads</td><td>₹30,000</td><td>₹1,50,000</td><td>₹3,00,000</td><td>₹4,80,000</td></tr>
+    <tr><td>Ops Coordinator</td><td>—</td><td>₹60,000</td><td>₹1,80,000</td><td>₹2,40,000</td></tr>
+    <tr><td>Event Execution Float*</td><td>₹2,44,000</td><td>₹18,00,000</td><td>₹21,00,000</td><td>₹41,44,000</td></tr>
+    <tr><td>Contingency</td><td>₹50,000</td><td>₹1,47,000</td><td>₹1,70,000</td><td>₹3,67,000</td></tr>
+    <tr class="row-tot"><td>Total</td><td>₹4,19,000</td><td>₹21,32,000</td><td>₹27,48,000</td><td class="ev-t">₹52,99,000</td></tr>
+  </tbody>
+</table></div>
+<p style="font-size:11px;color:#6b7280;margin-bottom:20px">*Execution float largely recovered via 50% client advances before execution begins</p>
+<p class="sec-title" style="margin-bottom:14px">Month-by-Month Net Revenue</p>
+<div class="bar-chart">
+  <div class="bar-row"><span class="bar-lbl">Jun</span><div class="bar-bg"><div class="bar-fill ev" style="width:1%"></div></div><span class="bar-val">−₹33K</span></div>
+  <div class="bar-row"><span class="bar-lbl">Jul</span><div class="bar-bg"><div class="bar-fill ev" style="width:5%"></div></div><span class="bar-val">₹0–70K</span></div>
+  <div class="bar-row"><span class="bar-lbl">Aug</span><div class="bar-bg"><div class="bar-fill ev" style="width:26%"></div></div><span class="bar-val">₹3.1–4.7L</span></div>
+  <div class="bar-row"><span class="bar-lbl">Sep</span><div class="bar-bg"><div class="bar-fill ev" style="width:32%"></div></div><span class="bar-val">₹3.8–5.8L</span></div>
+  <div class="bar-row"><span class="bar-lbl">Oct 🪔</span><div class="bar-bg"><div class="bar-fill ev" style="width:63%"></div></div><span class="bar-val">₹7.5–11.5L</span></div>
+  <div class="bar-row"><span class="bar-lbl">Nov 🎆</span><div class="bar-bg"><div class="bar-fill ev" style="width:68%"></div></div><span class="bar-val">₹6.5–12.5L</span></div>
+  <div class="bar-row"><span class="bar-lbl">Dec 🎊</span><div class="bar-bg"><div class="bar-fill ev" style="width:100%"></div></div><span class="bar-val">₹9.2–16.2L</span></div>
+  <div class="bar-row"><span class="bar-lbl">Jan 🌾</span><div class="bar-bg"><div class="bar-fill ev" style="width:82%"></div></div><span class="bar-val">₹12–22L</span></div>
+  <div class="bar-row"><span class="bar-lbl">Feb–Jun</span><div class="bar-bg"><div class="bar-fill ev" style="width:91%"></div></div><span class="bar-val">₹17.5–34.5L</span></div>
+</div>
+<div class="callout center">💡 Master Rule: Never spend money you haven't collected first. Advance before all execution costs.</div>
+</div>
+  <div id="ev-ue" class="sub-panel">
+<p class="sec-title">Unit Economics — Per Event P&L</p>
+<p class="sec-sub">What each format actually makes after all costs</p>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Event Format</th><th>Pax</th><th>Revenue</th><th>Total Cost</th><th>Net Profit</th><th>Margin</th></tr></thead>
+  <tbody>
+    <tr><td>Corporate Mandate (Small)</td><td class="m-t">35</td><td>₹1,50,000</td><td class="m-t">₹81,000</td><td class="g-t">₹69,000</td><td>46%</td></tr>
+    <tr><td>Corporate Mandate (Large)</td><td class="m-t">65</td><td>₹2,50,000</td><td class="m-t">₹1,38,000</td><td class="g-t">₹1,12,000</td><td>45%</td></tr>
+    <tr class="row-hi"><td><strong>Celebrity Fan Night ⭐</strong></td><td class="m-t">30</td><td>₹3,00,000</td><td class="m-t">₹91,500</td><td class="g-t">₹2,08,500</td><td class="hl-ev">70%</td></tr>
+    <tr><td>Drop Dinner + Sponsor</td><td class="m-t">40</td><td>₹2,00,000</td><td class="m-t">₹97,500</td><td class="g-t">₹1,02,500</td><td>51%</td></tr>
+    <tr><td>Cine Insider Series</td><td class="m-t">30</td><td>₹1,80,000</td><td class="m-t">₹71,000</td><td class="g-t">₹1,09,000</td><td>61%</td></tr>
+    <tr><td>CXO Evening + Sponsor</td><td class="m-t">25</td><td>₹2,50,000</td><td class="m-t">₹98,000</td><td class="g-t">₹1,52,000</td><td>61%</td></tr>
+    <tr><td>NYE Premium</td><td class="m-t">80</td><td>₹7,20,000</td><td class="m-t">₹3,35,000</td><td class="g-t">₹3,85,000</td><td>53%</td></tr>
+    <tr><td>Premium Wedding</td><td class="m-t">200+</td><td>₹15,00,000</td><td class="m-t">₹9,00,000</td><td class="g-t">₹6,00,000</td><td>40%</td></tr>
+  </tbody>
+</table></div>
+<p class="sec-title" style="margin-bottom:14px">Cost Breakdown — Corporate Mandate (Large, 65 pax)</p>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Cost Item</th><th>Amount</th><th>% of Revenue</th></tr></thead>
+  <tbody>
+    <tr><td>Venue</td><td>₹28,000</td><td class="m-t">11.2%</td></tr>
+    <tr><td>F&B (₹600/pax)</td><td>₹39,000</td><td class="m-t">15.6%</td></tr>
+    <tr><td>Decor</td><td>₹22,000</td><td class="m-t">8.8%</td></tr>
+    <tr><td>Staff + AV</td><td>₹19,000</td><td class="m-t">7.6%</td></tr>
+    <tr><td>Misc + Buffer</td><td>₹30,000</td><td class="m-t">12%</td></tr>
+    <tr class="row-tot"><td>Total Cost</td><td class="ev-t">₹1,38,000</td><td class="g-t">Net margin 45%</td></tr>
+  </tbody>
+</table></div>
+<p class="sec-title" style="margin-bottom:14px">Payment Structure — Golden Rule</p>
+<div class="ins-grid">
+  <div class="ins-card"><p class="ins-text"><strong>Corporate Events</strong><br>50% advance before execution. Balance on delivery day. Never float costs.</p></div>
+  <div class="ins-card"><p class="ins-text"><strong>Celebrity Fan Night</strong><br>20 tickets sold before venue is booked. Ticket revenue covers venue + F&B.</p></div>
+  <div class="ins-card"><p class="ins-text"><strong>Drop Dinner</strong><br>30 tickets + sponsor confirmed before F&B is ordered.</p></div>
+  <div class="ins-card"><p class="ins-text"><strong>Premium Wedding</strong><br>40% on signing → 30% at midpoint → 30% on delivery day.</p></div>
+</div>
+</div>
+  <div id="ev-roi" class="sub-panel">
+<p class="sec-title">ROI Benchmarks</p>
+<p class="sec-sub">What returns to expect and how long to wait</p>
+<div class="kpi-grid">
+  <div class="kpi-card"><p class="kpi-label">CAC — Referral</p><p class="kpi-val ev">₹0</p><p class="kpi-note">Word of mouth from satisfied corporate clients</p></div>
+  <div class="kpi-card"><p class="kpi-label">CAC — LinkedIn B2B</p><p class="kpi-val ev">₹8–15K</p><p class="kpi-note">Per corporate client via LinkedIn</p></div>
+  <div class="kpi-card"><p class="kpi-label">LTV — Corporate (3yr)</p><p class="kpi-val ev">₹18–45L</p><p class="kpi-note">4–6 recurring events per year</p></div>
+  <div class="kpi-card"><p class="kpi-label">LTV : CAC Ratio</p><p class="kpi-val ev">90–300x</p><p class="kpi-note">Industry benchmark is 3x. Exceptional.</p></div>
+  <div class="kpi-card"><p class="kpi-label">Phase 1 Payback</p><p class="kpi-val ev">6–8 wks</p><p class="kpi-note">First invoice to full capital recovery</p></div>
+  <div class="kpi-card"><p class="kpi-label">Monthly Break-Even</p><p class="kpi-val ev">3 events</p><p class="kpi-note">Covers all monthly fixed costs of ₹53K</p></div>
+  <div class="kpi-card"><p class="kpi-label">WA Community → Sales</p><p class="kpi-val ev">30–40%</p><p class="kpi-note">Conversion rate on event announcements</p></div>
+  <div class="kpi-card"><p class="kpi-label">Sponsor Revenue (Scale)</p><p class="kpi-val ev">₹1–1.5L/mo</p><p class="kpi-note">Passive from Phase 2 onwards</p></div>
+</div>
+<hr>
+<p class="sec-title" style="margin-bottom:14px">Channel ROAS</p>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Channel</th><th>ROAS</th><th>Best For</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>Instagram Organic</td><td class="g-t">10–20x</td><td>Fan nights, drop dinners</td><td class="m-t">Free. Build from Day 1.</td></tr>
+    <tr><td>Meta Paid Ads</td><td class="g-t">8–12x</td><td>Ticket sales, awareness</td><td class="m-t">Activate after 500 followers</td></tr>
+    <tr><td>LinkedIn Outreach</td><td class="g-t">18x</td><td>Corporate mandates (B2B)</td><td class="m-t">Best for GCC targeting</td></tr>
+    <tr><td>WhatsApp Community</td><td class="g-t">∞</td><td>All event formats</td><td class="m-t">Zero cost. Build Day 1.</td></tr>
+    <tr><td>Referral Network</td><td class="g-t">∞</td><td>Weddings + premium events</td><td class="m-t">CAC = ₹0</td></tr>
+  </tbody>
+</table></div>
+<div class="callout"><strong>Monthly fixed costs (Phase 2): ₹53,000.</strong> A typical 4-event month generates ₹4,49,000 net — 8.5x fixed cost coverage. Every additional event is almost pure margin.</div>
+</div>
+  <div id="ev-tools" class="sub-panel">
+<p class="sec-title">Tool Stack — Events Company</p>
+<p class="sec-sub">Total tech cost: ~₹3,300/month fixed + 2% on revenue</p>
+<div class="tool-grid">
+  <div class="tool-card"><p class="tool-name">AiSensy</p><p class="tool-cost">₹1,999/month</p><p class="tool-use">WhatsApp community management, ticket drops, event reminders, referral asks</p></div>
+  <div class="tool-card"><p class="tool-name">HubSpot CRM</p><p class="tool-cost">Free</p><p class="tool-use">Corporate pipeline tracking, GCC prospect list, follow-up cadence</p></div>
+  <div class="tool-card"><p class="tool-name">Razorpay</p><p class="tool-cost">2% per transaction</p><p class="tool-use">Advance collection, ticket payments, sponsor invoices</p></div>
+  <div class="tool-card"><p class="tool-name">n8n (self-hosted)</p><p class="tool-cost">₹0</p><p class="tool-use">Automation — outreach sequences, follow-ups, referral asks</p></div>
+  <div class="tool-card"><p class="tool-name">Brevo</p><p class="tool-cost">Free tier</p><p class="tool-use">Corporate email sequences, event reminders, newsletters</p></div>
+  <div class="tool-card"><p class="tool-name">Notion</p><p class="tool-cost">₹1,300/month</p><p class="tool-use">Event SOPs, vendor contacts, team coordination, run-of-show docs</p></div>
+  <div class="tool-card"><p class="tool-name">Meta Business Suite</p><p class="tool-cost">Free</p><p class="tool-use">Instagram scheduling, ad management, analytics</p></div>
+  <div class="tool-card"><p class="tool-name">Zoho Books</p><p class="tool-cost">₹2,499/year</p><p class="tool-use">GST invoicing, P&L tracking, vendor payment records</p></div>
+</div>
+<hr>
+<p class="sec-title">n8n Automation Workflows</p>
+<div class="wf-grid">
+  <div class="wf-card"><p class="wf-title">Workflow 1 — Corporate Pitch Sequence</p><p class="wf-body">LinkedIn connection → HubSpot tag → Brevo 3-email sequence → AiSensy WhatsApp follow-up → HubSpot stage update.</p></div>
+  <div class="wf-card"><p class="wf-title">Workflow 2 — Fan Night Ticket Drop</p><p class="wf-body">WA broadcast → Razorpay payment link → ticket confirm → AiSensy reminder D-7 and D-1 → post-event check-in.</p></div>
+  <div class="wf-card"><p class="wf-title">Workflow 3 — Post-Event Referral Ask</p><p class="wf-body">Event complete → 48hr delay → AiSensy referral message → referral link → HubSpot new lead created automatically.</p></div>
+</div>
+</div>
+  <div id="ev-ap" class="sub-panel">
+<p class="sec-title">Action Plan — Events Company</p>
+<p class="sec-sub">Ajay's execution calendar. Milestones are non-negotiable gates.</p>
+<div class="timeline">
+  <div class="tl-item"><p class="tl-date">Jun 15</p><p class="tl-text">Lock business name + domain. File proprietorship + GST (₹5K). Map first 10 GCC targets in HubSpot.</p></div>
+  <div class="tl-item"><p class="tl-date">Jun 18</p><p class="tl-text">Ajay scouts 3 venue partners for rev-share model — no upfront venue cost.</p></div>
+  <div class="tl-item"><p class="tl-date">Jun 19</p><p class="tl-text">Brief designer — brand identity + corporate pitch deck. Budget ₹10K. Due Jun 28.</p></div>
+  <div class="tl-item"><p class="tl-date">Jun 22</p><p class="tl-text">Instagram account live — mystery teasers only. No hard sell.</p></div>
+  <div class="tl-item"><p class="tl-date">Jun 24</p><p class="tl-text">AiSensy API configured. Launch "Chennai Exclusive Access" WhatsApp community. Target 25 founding members.</p></div>
+  <div class="tl-item"><p class="tl-date">Jun 25</p><p class="tl-text">Build n8n Workflow 1 (corporate pitch sequence). Set up HubSpot pipeline stages.</p></div>
+  <div class="tl-item"><p class="tl-date">Jun 27</p><p class="tl-text">Ajay contacts celebrity coordinator for Aug Fan Night. Minimum 45-day lead time required.</p></div>
+  <div class="tl-item"><p class="tl-date">Jul 1</p><p class="tl-text">First 10 corporate pitches via LinkedIn + Brevo. Begin tracking opens and replies in HubSpot.</p></div>
+  <div class="tl-item ms"><p class="tl-date ev">Jul 15 — Milestone</p><p class="tl-text"><strong>First mandate signed + 50% advance received.</strong> If not by Jul 20, review pitch deck and ICP targeting.</p></div>
+  <div class="tl-item ms"><p class="tl-date ev">Jul 31 — Milestone</p><p class="tl-text"><strong>25+ WA members + Fan Night pre-sale open.</strong> Minimum 15 tickets sold before venue is booked.</p></div>
+  <div class="tl-item ms"><p class="tl-date ev">Aug 15 — Milestone</p><p class="tl-text"><strong>Phase 1 investment fully recovered.</strong> 3 events completed. Testimonials documented.</p></div>
+  <div class="tl-item ms"><p class="tl-date ev">Aug 31 — Milestone</p><p class="tl-text"><strong>Ops coordinator hired.</strong> Oct–Dec festival calendar planned, venues booked, sponsors started.</p></div>
+  <div class="tl-item ms"><p class="tl-date ev">Sep 1</p><p class="tl-text"><strong>Phase 2 activated.</strong> ₹21.32L investment unlocked. Festival season execution begins.</p></div>
+</div>
+</div>
+</div>
+
+<!-- INTERIOR PANEL -->
+<div id="panel-interior" class="super-panel">
+  <div class="sub-bar">
+    <button class="sub-tab active" onclick="switchSub('interior','int-mkt',this)">📊 Market</button>
+    <button class="sub-tab" onclick="switchSub('interior','int-ph',this)">📅 Phases</button>
+    <button class="sub-tab" onclick="switchSub('interior','int-ue',this)">💰 Unit Economics</button>
+    <button class="sub-tab" onclick="switchSub('interior','int-roi',this)">📈 ROI</button>
+    <button class="sub-tab" onclick="switchSub('interior','int-tools',this)">🤖 Tools</button>
+    <button class="sub-tab" onclick="switchSub('interior','int-ap',this)">✅ Action Plan</button>
+  </div>
+  <div id="int-mkt" class="sub-panel active">
+<p class="sec-title">Market Validation</p>
+<p class="sec-sub">Why interior design, why OMR, why now</p>
+<div class="kpi-grid">
+  <div class="kpi-card"><p class="kpi-label">India Interior Design Market</p><p class="kpi-val int">$35B</p><p class="kpi-note">CAGR 14.3% → $65–81B by 2031</p></div>
+  <div class="kpi-card"><p class="kpi-label">Residential Segment CAGR</p><p class="kpi-val int">16.47%</p><p class="kpi-note">Fastest growing sub-segment</p></div>
+  <div class="kpi-card"><p class="kpi-label">Chennai OMR Deliveries</p><p class="kpi-val int">40,000+</p><p class="kpi-note">Apartments delivered 2023–24. Buyer = IT professional.</p></div>
+  <div class="kpi-card"><p class="kpi-label">Design Penetration (Tier 1)</p><p class="kpi-val int">20–25%</p><p class="kpi-note">Only 1 in 4 homeowners use a designer</p></div>
+  <div class="kpi-card"><p class="kpi-label">Instagram as Lead Source</p><p class="kpi-val int">68%</p><p class="kpi-note">Of all interior design leads in India</p></div>
+  <div class="kpi-card"><p class="kpi-label">Livspace FY25 Growth</p><p class="kpi-val int">+23%</p><p class="kpi-note">YoY revenue. Organized market scaling fast.</p></div>
+</div>
+<hr>
+<p class="sec-title" style="margin-bottom:14px">5 Key Insights</p>
+<div class="ins-grid">
+  <div class="ins-card int"><p class="ins-num">01</p><p class="ins-text"><strong>₹10K consultation fee = instant lead filter.</strong> Filters out 80% of non-serious enquiries. Only genuine buyers pay. This is a brand signal, not a barrier.</p></div>
+  <div class="ins-card int"><p class="ins-num">02</p><p class="ins-text"><strong>Diwali deadline creates real urgency.</strong> "Projects signed after Sep 15 cannot be Diwali-ready." That's logistics reality. Use it honestly and it converts.</p></div>
+  <div class="ins-card int"><p class="ins-num">03</p><p class="ins-text"><strong>First 3 Reels decide whether the phone rings.</strong> 68% of design leads come from Instagram. If the first 3 posts don't generate enquiries, rethink before spending on ads.</p></div>
+  <div class="ins-card int"><p class="ins-num">04</p><p class="ins-text"><strong>1 happy OMR client = 1.8 referrals.</strong> IT professional circles are tight and trust-driven. One transformation post in a resident WhatsApp group generates multiple inbound leads.</p></div>
+  <div class="ins-card int"><p class="ins-num">05</p><p class="ins-text"><strong>Install Meta Pixel on website Day 1 (Jul 5).</strong> 30-day warmup before Aug 1 ads = CPL is 20–40% cheaper. Skip this and you pay a permanent premium for every lead.</p></div>
+</div>
+<hr>
+<p class="sec-title" style="margin-bottom:14px">Target Segments</p>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Priority</th><th>Segment</th><th>Location</th><th>Project Value</th><th>Phase</th></tr></thead>
+  <tbody>
+    <tr><td class="int-t">P1</td><td>IT Professionals — 2BHK/3BHK</td><td>OMR, Sholinganallur</td><td class="g-t">₹12–22L</td><td class="m-t">Month 1+</td></tr>
+    <tr><td class="int-t">P1</td><td>Senior IT / HNI — 3BHK+ / Villa</td><td>ECR, Adyar</td><td class="g-t">₹25–55L</td><td class="m-t">Month 1+</td></tr>
+    <tr><td class="m-t">P2</td><td>Retail Brand Fitouts</td><td>Chennai city</td><td class="g-t">₹8–40L</td><td class="m-t">Month 8+</td></tr>
+    <tr><td class="m-t">P2</td><td>Film / Media Set Design</td><td>Chennai city</td><td class="g-t">₹6–12L</td><td class="m-t">Month 8+</td></tr>
+    <tr><td class="m-t">P3</td><td>GCC Office Interiors</td><td>OMR, Perungudi</td><td class="g-t">₹20–80L</td><td class="m-t">Month 10+</td></tr>
+  </tbody>
+</table></div>
+<hr>
+<p class="sec-title" style="margin-bottom:14px">Competitor Landscape</p>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Competitor</th><th>Their Weakness</th><th>Your Edge</th></tr></thead>
+  <tbody>
+    <tr><td>Livspace Chennai</td><td>Product-driven, no customisation</td><td class="int-t">Bespoke design, personal designer relationship</td></tr>
+    <tr><td>HomeLane</td><td>Thin Chennai operations</td><td class="int-t">Full local presence, faster delivery</td></tr>
+    <tr><td>Local Contractors</td><td>No design layer, no PM</td><td class="int-t">End-to-end design + execution</td></tr>
+    <tr><td>Freelance Designers</td><td>No vendor network, no brand</td><td class="int-t">Studio + vetted vendor relationships</td></tr>
+    <tr><td>Architecture Firms</td><td>Expensive, slow (6–12 months)</td><td class="int-t">Right-priced at 12–13% fee, faster delivery</td></tr>
+  </tbody>
+</table></div>
+</div>
+  <div id="int-ph" class="sub-panel">
+<p class="sec-title">Phase-Wise Investment Plan</p>
+<p class="sec-sub">Interior Design Studio — Shanmathi leads</p>
+<div class="phase-grid">
+  <div class="phase-card int">
+    <p class="ph-label">Phase 1</p><p class="ph-name">Foundation</p><p class="ph-period">Jun 15 – Jul 31, 2026 · 6 weeks</p>
+    <div class="ph-row"><span>Investment</span><span class="ph-val int">₹65,000</span></div>
+    <div class="ph-row"><span>Revenue</span><span class="ph-val g">₹1.5–2.5L</span></div>
+    <div class="ph-row"><span>Net Profit</span><span class="ph-val g">₹85K–1.85L</span></div>
+    <p class="ph-roi">ROI: 2.3–3.8x</p>
+  </div>
+  <div class="phase-card int">
+    <p class="ph-label">Phase 2</p><p class="ph-name">Scale</p><p class="ph-period">Aug 1 – Dec 31, 2026 · 22 weeks</p>
+    <div class="ph-row"><span>Investment</span><span class="ph-val int">₹3,75,000</span></div>
+    <div class="ph-row"><span>Revenue</span><span class="ph-val g">₹25–42L</span></div>
+    <div class="ph-row"><span>Net Profit</span><span class="ph-val g">₹21.2–38.2L</span></div>
+    <p class="ph-roi">ROI: 6.7–11.2x 🔥</p>
+  </div>
+  <div class="phase-card int">
+    <p class="ph-label">Phase 3</p><p class="ph-name">Expand</p><p class="ph-period">Jan 1 – Jun 30, 2027 · 26 weeks</p>
+    <div class="ph-row"><span>Investment</span><span class="ph-val int">₹5,19,500</span></div>
+    <div class="ph-row"><span>Revenue</span><span class="ph-val g">₹35–55L</span></div>
+    <div class="ph-row"><span>Net Profit</span><span class="ph-val g">₹29.8–49.8L</span></div>
+    <p class="ph-roi">ROI: 6.7–10.6x</p>
+  </div>
+</div>
+<div class="sum-bar">
+  <div class="sum-item"><p class="sum-label">Year 1 Total Investment</p><p class="sum-val int">₹9.59L</p><p class="sum-note">Lean capital vs Events</p></div>
+  <div class="sum-item"><p class="sum-label">Year 1 Revenue</p><p class="sum-val int">₹55 – ₹91.5L</p><p class="sum-note">Conservative to optimistic</p></div>
+  <div class="sum-item"><p class="sum-label">Year 1 Net Profit</p><p class="sum-val int">₹44.7 – ₹76.5L</p><p class="sum-note">After all costs, all phases</p></div>
+</div>
+<p class="sec-title" style="margin-bottom:14px">Investment Breakdown</p>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Category</th><th>Phase 1</th><th>Phase 2</th><th>Phase 3</th><th>Total</th></tr></thead>
+  <tbody>
+    <tr><td>Legal + Registration</td><td>₹5,000</td><td>—</td><td>—</td><td>₹5,000</td></tr>
+    <tr><td>Photography</td><td>₹18,000</td><td>₹12,000</td><td>₹20,000</td><td>₹50,000</td></tr>
+    <tr><td>Website (Calendly+Razorpay)</td><td>₹25,000</td><td>—</td><td>—</td><td>₹25,000</td></tr>
+    <tr><td>Brand + Social Setup</td><td>₹12,000</td><td>₹8,000</td><td>₹10,000</td><td>₹30,000</td></tr>
+    <tr><td>Meta Ads</td><td>—</td><td>₹1,00,000</td><td>₹1,44,000</td><td>₹2,44,000</td></tr>
+    <tr><td>Google Ads</td><td>—</td><td>₹40,000</td><td>₹60,000</td><td>₹1,00,000</td></tr>
+    <tr><td>Influencer Collabs</td><td>—</td><td>₹50,000</td><td>₹60,000</td><td>₹1,10,000</td></tr>
+    <tr><td>Digital Tools</td><td>₹5,000</td><td>₹27,500</td><td>₹49,500</td><td>₹82,000</td></tr>
+    <tr><td>RoomSketcher</td><td>—</td><td>₹7,500</td><td>₹7,500</td><td>₹15,000</td></tr>
+    <tr><td>Junior Designer</td><td>—</td><td>₹50,000</td><td>₹1,50,000</td><td>₹2,00,000</td></tr>
+    <tr><td>Contingency</td><td>—</td><td>₹80,000</td><td>₹1,18,500</td><td>₹1,98,500</td></tr>
+    <tr class="row-tot"><td>Total</td><td>₹65,000</td><td>₹3,75,000</td><td>₹5,19,500</td><td class="int-t">₹9,59,500</td></tr>
+  </tbody>
+</table></div>
+<p class="sec-title" style="margin-bottom:14px">Month-by-Month Net Revenue</p>
+<div class="bar-chart">
+  <div class="bar-row"><span class="bar-lbl">Jun</span><div class="bar-bg"><div class="bar-fill int" style="width:1%"></div></div><span class="bar-val">−₹65K</span></div>
+  <div class="bar-row"><span class="bar-lbl">Jul</span><div class="bar-bg"><div class="bar-fill int" style="width:11%"></div></div><span class="bar-val">₹88K–1.75L</span></div>
+  <div class="bar-row"><span class="bar-lbl">Aug</span><div class="bar-bg"><div class="bar-fill int" style="width:38%"></div></div><span class="bar-val">₹2.58–4.58L</span></div>
+  <div class="bar-row"><span class="bar-lbl">Sep</span><div class="bar-bg"><div class="bar-fill int" style="width:58%"></div></div><span class="bar-val">₹4.58–7.58L</span></div>
+  <div class="bar-row"><span class="bar-lbl">Oct 🪔</span><div class="bar-bg"><div class="bar-fill int" style="width:66%"></div></div><span class="bar-val">₹5.55–8.55L</span></div>
+  <div class="bar-row"><span class="bar-lbl">Nov</span><div class="bar-bg"><div class="bar-fill int" style="width:55%"></div></div><span class="bar-val">₹4.4–7.4L</span></div>
+  <div class="bar-row"><span class="bar-lbl">Dec</span><div class="bar-bg"><div class="bar-fill int" style="width:55%"></div></div><span class="bar-val">₹4.4–7.4L</span></div>
+  <div class="bar-row"><span class="bar-lbl">Jan 🌾</span><div class="bar-bg"><div class="bar-fill int" style="width:64%"></div></div><span class="bar-val">₹5.3–9.3L</span></div>
+  <div class="bar-row"><span class="bar-lbl">Feb–Jun</span><div class="bar-bg"><div class="bar-fill int" style="width:100%"></div></div><span class="bar-val">₹18–30.5L</span></div>
+</div>
+<div class="callout int center">💡 Master Rule: Never spend money you haven't collected first. 40% advance on signing before any design work begins.</div>
+</div>
+  <div id="int-ue" class="sub-panel">
+<p class="sec-title">Unit Economics — Per Project P&L</p>
+<p class="sec-sub">Studio fee: 12–13% of total project value. Margins are structurally high.</p>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Project Type</th><th>Project Value</th><th>Studio Fee</th><th>Studio Cost</th><th>Net Profit</th><th>Margin</th><th>Duration</th></tr></thead>
+  <tbody>
+    <tr><td>1BHK Standard</td><td class="m-t">₹7L</td><td>₹84,000</td><td class="m-t">₹16,000</td><td class="g-t">₹68,000</td><td>81%</td><td class="m-t">45 days</td></tr>
+    <tr><td>2BHK Standard</td><td class="m-t">₹12L</td><td>₹1,44,000</td><td class="m-t">₹27,000</td><td class="g-t">₹1,17,000</td><td>81%</td><td class="m-t">75 days</td></tr>
+    <tr><td>2BHK Premium</td><td class="m-t">₹22L</td><td>₹2,64,000</td><td class="m-t">₹56,000</td><td class="g-t">₹2,08,000</td><td>79%</td><td class="m-t">90 days</td></tr>
+    <tr><td>3BHK Standard</td><td class="m-t">₹18L</td><td>₹2,16,000</td><td class="m-t">₹38,000</td><td class="g-t">₹1,78,000</td><td>82%</td><td class="m-t">90 days</td></tr>
+    <tr class="row-hi"><td><strong>3BHK Premium ⭐</strong></td><td class="m-t">₹30L</td><td>₹3,90,000</td><td class="m-t">₹72,000</td><td class="g-t">₹3,18,000</td><td class="hl-int">82%</td><td class="m-t">120 days</td></tr>
+    <tr><td>Villa / HNI</td><td class="m-t">₹55L</td><td>₹7,15,000</td><td class="m-t">₹1,20,000</td><td class="g-t">₹5,95,000</td><td>83%</td><td class="m-t">180 days</td></tr>
+    <tr><td>Retail Fitout</td><td class="m-t">₹10L</td><td>₹1,20,000</td><td class="m-t">₹34,000</td><td class="g-t">₹86,000</td><td>72%</td><td class="m-t">45 days</td></tr>
+    <tr><td>MNC Outlet</td><td class="m-t">₹40L</td><td>₹4,80,000</td><td class="m-t">₹90,000</td><td class="g-t">₹3,90,000</td><td>81%</td><td class="m-t">75 days</td></tr>
+  </tbody>
+</table></div>
+<p class="sec-title" style="margin-bottom:14px">Studio Cost Breakdown — 2BHK Standard (₹12L project)</p>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Cost Item</th><th>Amount</th></tr></thead>
+  <tbody>
+    <tr><td>3D Renders (RoomSketcher)</td><td>₹7,000</td></tr>
+    <tr><td>Site Visits (transport + time)</td><td>₹4,200</td></tr>
+    <tr><td>Project Coordination</td><td>₹8,000</td></tr>
+    <tr><td>Material Samples + Printing</td><td>₹4,000</td></tr>
+    <tr><td>AiSensy Client Comms</td><td>₹2,000</td></tr>
+    <tr><td>Miscellaneous</td><td>₹1,800</td></tr>
+    <tr class="row-tot"><td>Total Studio Cost</td><td class="int-t">₹27,000 → 81% net margin on ₹1.44L fee</td></tr>
+  </tbody>
+</table></div>
+<p class="sec-title" style="margin-bottom:14px">Capacity Planning</p>
+<div class="kpi-grid">
+  <div class="kpi-card"><p class="kpi-label">Monthly Capacity</p><p class="kpi-val int">160 hrs</p><p class="kpi-note">Shanmathi's active working capacity</p></div>
+  <div class="kpi-card"><p class="kpi-label">Max Projects (Solo)</p><p class="kpi-val int">2/month</p><p class="kpi-note">Sustainable without burnout</p></div>
+  <div class="kpi-card"><p class="kpi-label">Max Projects (+ Junior)</p><p class="kpi-val int">3–4/month</p><p class="kpi-note">Hire when 3+ projects run concurrently</p></div>
+  <div class="kpi-card"><p class="kpi-label">Junior Hire ROI</p><p class="kpi-val int">4–6x</p><p class="kpi-note">On ₹25K/month salary cost</p></div>
+</div>
+<p class="sec-title" style="margin-bottom:14px">4-Step Payment Structure</p>
+<div class="ins-grid">
+  <div class="ins-card int"><p class="ins-text"><strong>Step 1 — ₹10K Consultation</strong><br>Non-negotiable. Paid upfront. Deducted from project fee if they proceed.</p></div>
+  <div class="ins-card int"><p class="ins-text"><strong>Step 2 — 40% on Signing</strong><br>Design agreement signed. Work begins only after advance received.</p></div>
+  <div class="ins-card int"><p class="ins-text"><strong>Step 3 — 30% at Midpoint</strong><br>After 3D renders approved and procurement starts.</p></div>
+  <div class="ins-card int"><p class="ins-text"><strong>Step 4 — 30% on Delivery</strong><br>Final walkthrough done. Balance collected before handover of keys.</p></div>
+</div>
+</div>
+  <div id="int-roi" class="sub-panel">
+<p class="sec-title">ROI Benchmarks</p>
+<p class="sec-sub">What the numbers say about this business model</p>
+<div class="kpi-grid">
+  <div class="kpi-card"><p class="kpi-label">CAC — Warm / Referral</p><p class="kpi-val int">₹0</p><p class="kpi-note">Network, Instagram organic, resident groups</p></div>
+  <div class="kpi-card"><p class="kpi-label">CAC — Meta Paid Ads</p><p class="kpi-val int">₹400–800</p><p class="kpi-note">Per qualified lead after 30-day pixel warmup</p></div>
+  <div class="kpi-card"><p class="kpi-label">CAC — Google Ads</p><p class="kpi-val int">₹300–700</p><p class="kpi-note">High-intent "interior designer OMR" search</p></div>
+  <div class="kpi-card"><p class="kpi-label">Consult → Project (Warm)</p><p class="kpi-val int">45–55%</p><p class="kpi-note">Network / referral lead conversion</p></div>
+  <div class="kpi-card"><p class="kpi-label">Consult → Project (Ads)</p><p class="kpi-val int">30–40%</p><p class="kpi-note">Lower intent but strong for a ₹12–30L ticket</p></div>
+  <div class="kpi-card"><p class="kpi-label">Phase 1 Payback</p><p class="kpi-val int">3–4 wks</p><p class="kpi-note">Fastest payback of both businesses</p></div>
+  <div class="kpi-card"><p class="kpi-label">Monthly Fixed Costs (Ph2)</p><p class="kpi-val int">₹14,625</p><p class="kpi-note">1 standard project covers everything</p></div>
+  <div class="kpi-card"><p class="kpi-label">OMR Referral Rate</p><p class="kpi-val int">1.8x</p><p class="kpi-note">Each happy client refers 1.8 more</p></div>
+</div>
+<hr>
+<p class="sec-title" style="margin-bottom:14px">Channel ROAS</p>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Channel</th><th>ROAS</th><th>Best For</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>Instagram Organic</td><td class="g-t">56–84x</td><td>Before-after Reels, transformation content</td><td class="m-t">68% of all leads. Build Day 1.</td></tr>
+    <tr><td>Meta Paid Ads</td><td class="g-t">21–35x</td><td>Retargeting warm website visitors</td><td class="m-t">Activate Aug 1 after pixel warmup</td></tr>
+    <tr><td>Google Ads</td><td class="g-t">14–28x</td><td>High-intent search traffic</td><td class="m-t">Start Phase 2. "Interior designer OMR"</td></tr>
+    <tr><td>Referral Network</td><td class="g-t">∞</td><td>IT professional social circles</td><td class="m-t">CAC = ₹0. Highest quality leads.</td></tr>
+    <tr><td>Pinterest Business</td><td class="g-t">Variable</td><td>Discovery, inspiration boards</td><td class="m-t">Free. Set up Day 1.</td></tr>
+  </tbody>
+</table></div>
+<p class="sec-title" style="margin-bottom:14px">Shanmathi's Effective Hourly Rate</p>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Project Type</th><th>Studio Fee</th><th>Hours</th><th>Rate / Hour</th></tr></thead>
+  <tbody>
+    <tr><td>2BHK Standard</td><td>₹1,44,000</td><td class="m-t">~148 hrs</td><td class="g-t">₹975/hr</td></tr>
+    <tr><td>3BHK Premium</td><td>₹3,90,000</td><td class="m-t">~156 hrs</td><td class="g-t">₹2,500/hr</td></tr>
+    <tr><td>Villa / HNI</td><td>₹7,15,000</td><td class="m-t">~160 hrs</td><td class="g-t">₹4,469/hr</td></tr>
+    <tr class="row-tot"><td>Target with Junior</td><td>—</td><td class="m-t">~80 hrs active</td><td class="int-t">₹3,000–8,000/hr</td></tr>
+  </tbody>
+</table></div>
+<div class="callout int"><strong>The junior designer multiplier:</strong> At ₹25K/month, a junior unlocks ₹1–1.5L in additional project capacity — a 4–6x return on that hire. Trigger: when 3 projects run simultaneously.</div>
+</div>
+  <div id="int-tools" class="sub-panel">
+<p class="sec-title">Tool Stack — Interior Studio</p>
+<p class="sec-sub">Total tech cost: ~₹6,800/month fixed</p>
+<div class="tool-grid">
+  <div class="tool-card"><p class="tool-name">Calendly + Razorpay</p><p class="tool-cost int">Free + 2% per txn</p><p class="tool-use">₹10K consultation booking and payment. Fully automated intake.</p></div>
+  <div class="tool-card"><p class="tool-name">AiSensy</p><p class="tool-cost int">₹1,999/month</p><p class="tool-use">Client project updates, milestone notifications, payment reminders, referral asks</p></div>
+  <div class="tool-card"><p class="tool-name">RoomSketcher</p><p class="tool-cost int">₹7,500/year</p><p class="tool-use">3D floor plans and renders for client presentations. Closes projects faster.</p></div>
+  <div class="tool-card"><p class="tool-name">Meta Pixel + GA4</p><p class="tool-cost int">Free</p><p class="tool-use">Install on website Day 1 (Jul 5). 30-day warmup = 20–40% cheaper CPL from Aug 1.</p></div>
+  <div class="tool-card"><p class="tool-name">HubSpot CRM</p><p class="tool-cost int">Free</p><p class="tool-use">Lead tracking, consultation pipeline, project status, follow-up cadence</p></div>
+  <div class="tool-card"><p class="tool-name">Notion</p><p class="tool-cost int">₹1,300/month</p><p class="tool-use">Project SOPs, vendor contacts, client mood boards, material specs, timelines</p></div>
+  <div class="tool-card"><p class="tool-name">Pinterest Business</p><p class="tool-cost int">Free</p><p class="tool-use">Design discovery, inspiration boards, passive lead source from search</p></div>
+  <div class="tool-card"><p class="tool-name">n8n (self-hosted)</p><p class="tool-cost int">₹0</p><p class="tool-use">Lead intake and project milestone payment automations</p></div>
+</div>
+<hr>
+<p class="sec-title">n8n Automation Workflows</p>
+<div class="wf-grid">
+  <div class="wf-card"><p class="wf-title int">Workflow 1 — Lead Intake</p><p class="wf-body">Instagram DM / web form → 90-second AiSensy reply → Calendly booking link → Razorpay ₹10K → Notion project card auto-created. Zero manual steps.</p></div>
+  <div class="wf-card"><p class="wf-title int">Workflow 2 — Project Milestones</p><p class="wf-body">Notion milestone update → Razorpay invoice triggered → AiSensy client payment update → Zoho Books entry created. Full financial trail automated.</p></div>
+</div>
+</div>
+  <div id="int-ap" class="sub-panel">
+<p class="sec-title">Action Plan — Interior Studio</p>
+<p class="sec-sub">Shanmathi's execution calendar. Milestones are non-negotiable gates.</p>
+<div class="timeline">
+  <div class="tl-item"><p class="tl-date">Jun 15</p><p class="tl-text">Studio name + domain registered. Proprietorship + GST filed separately from Events. Budget ₹5K.</p></div>
+  <div class="tl-item"><p class="tl-date">Jun 16</p><p class="tl-text">Photographer booked for 3 best existing projects. Budget ₹18K. Shoot date Jun 21.</p></div>
+  <div class="tl-item"><p class="tl-date">Jun 19</p><p class="tl-text">Web developer briefed. Spec: Calendly + Razorpay embedded, portfolio gallery, consultation CTA. Budget ₹25K. Go-live Jul 5.</p></div>
+  <div class="tl-item"><p class="tl-date">Jun 22</p><p class="tl-text">Instagram account created. Bio and profile finalised. Content queue: 3 Reels from photography shoot.</p></div>
+  <div class="tl-item"><p class="tl-date">Jun 25</p><p class="tl-text">Reel #1 published — best before-and-after transformation. This post sets the visual tone for everything.</p></div>
+  <div class="tl-item"><p class="tl-date">Jun 26</p><p class="tl-text">Pinterest Business account live. Upload 20 curated design images. Message 20 warm network contacts about the studio launch.</p></div>
+  <div class="tl-item"><p class="tl-date">Jul 5</p><p class="tl-text">Website LIVE. Immediately install Meta Pixel + GA4. 30-day warmup clock starts now. Gates the Aug 1 ad launch.</p></div>
+  <div class="tl-item"><p class="tl-date">Jul 5–12</p><p class="tl-text">Build n8n Workflow 1 (lead → AiSensy → Calendly → Razorpay → Notion). Test end-to-end with a dummy submission.</p></div>
+  <div class="tl-item ms int"><p class="tl-date int">Jul 12 — Milestone</p><p class="tl-text"><strong>First consultation booked + ₹10,000 fee collected.</strong> Proves the funnel works. If not by Jul 15, review Instagram content and outreach quality.</p></div>
+  <div class="tl-item ms int"><p class="tl-date int">Jul 31 — Milestone</p><p class="tl-text"><strong>First project advance collected.</strong> 40% of ₹12L+ = minimum ₹4.8L in account. 3 Reels live. 500+ Instagram followers.</p></div>
+  <div class="tl-item ms int"><p class="tl-date int">Aug 1 — Milestone</p><p class="tl-text"><strong>Ads go live.</strong> Pixel warmed for 30 days. Meta + Google campaigns activated. Target: 8–12 consultations in August.</p></div>
+  <div class="tl-item ms int"><p class="tl-date int">Sep 1 — Milestone</p><p class="tl-text"><strong>Diwali urgency messaging activated.</strong> "Projects signed after Sep 15 cannot be Diwali-ready." 3 projects in active pipeline.</p></div>
+</div>
+</div>
+</div>
+
+</div>
+<script>
+function switchSuper(bizId, btn) {
+  document.querySelectorAll('.super-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.super-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.getElementById('panel-' + bizId).classList.add('active');
+  btn.classList.add('active');
+}
+function switchSub(panelId, subId, btn) {
+  var panel = document.getElementById('panel-' + panelId);
+  panel.querySelectorAll('.sub-panel').forEach(function(p) { p.classList.remove('active'); });
+  panel.querySelectorAll('.sub-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.getElementById(subId).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
